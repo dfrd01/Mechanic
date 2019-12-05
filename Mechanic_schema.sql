@@ -1,0 +1,56 @@
+USE mechanic;
+
+DROP TABLE IF EXISTS customer_car;
+DROP TABLE IF EXISTS compatibility;
+DROP TABLE IF EXISTS used_parts_repair;
+DROP TABLE IF EXISTS worked_hours;
+DROP TABLE IF EXISTS customer;
+DROP TABLE IF EXISTS model;
+DROP TABLE IF EXISTS brand;
+DROP TABLE IF EXISTS car;
+DROP TABLE IF EXISTS storage;
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS job;
+DROP TABLE IF EXISTS repair;
+
+CREATE TABLE repair (
+	repair_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	client_id INTEGER,
+	car_id INTEGER,
+	begin_date DATE,
+	end_date DATE,
+	work_hours INTEGER,
+	PRIMARY KEY(repair_id),
+	FOREIGN KEY(client_id),
+	FOREIGN KEY(car_id)
+);
+
+CREATE TABLE customer (
+	customer_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR(30),
+	address VARCHAR(150),
+	phone_number INTEGER,
+	PRIMARY KEY(customer_id)
+);
+
+CREATE TABLE car (
+	car_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	brand_id INTEGER,
+	model_id INTEGER,
+	plate VARCHAR,
+	PRIMARY KEY(car_id)
+);
+
+CREATE TABLE brand(
+	brand_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR,
+	PRIMARY KEY(brand_id)
+);
+
+CREATE TABLE model(
+	brand_id INTEGER,
+	model_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	name VARCHAR,
+	PRIMARY KEY(model_id),
+	FOREIGN KEY(brand_id)
+);
